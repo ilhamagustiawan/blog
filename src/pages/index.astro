@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import HomeSection from '../components/home/HomeSection.astro';
 import PostList from '../components/home/PostList.astro';
 import { getLatestPosts } from '../data/content';
@@ -6,6 +7,7 @@ import { getSiteConfig } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const POST_COUNT = 10;
+const LINK_ICON_SIZE = 20;
 
 const { home, site } = await getSiteConfig();
 const posts = await getLatestPosts(POST_COUNT);
@@ -22,15 +24,13 @@ const links = home.links.filter((link) => link.tooltip && !link.copy);
 
     {
       links.length > 0 && (
-        <p class="find-me">
-          Find me on{' '}
-          {links.map((link, index) => (
-            <>
-              <a href={link.tooltip}>{link.label}</a>
-              {index < links.length - 1 && ', '}
-            </>
+        <nav class="find-me" aria-label="Find me on">
+          {links.map((link) => (
+            <a href={link.tooltip} aria-label={link.label} title={link.label}>
+              <Icon name={link.icon} size={LINK_ICON_SIZE} />
+            </a>
           ))}
-        </p>
+        </nav>
       )
     }
 
@@ -51,10 +51,16 @@ const links = home.links.filter((link) => link.tooltip && !link.copy);
     color: var(--paper-ink-soft);
   }
 
+  /* Icon row: GitHub, Instagram, RSS */
+  .find-me {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+  }
+
   .find-me a {
-    color: var(--paper-ink);
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
+    display: inline-flex;
+    color: var(--paper-ink-soft);
   }
 
   .find-me a:hover {
