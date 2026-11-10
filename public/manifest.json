@@ -1,11 +1,11 @@
 {
-  "name": "navfolio",
-  "short_name": "navfolio",
-  "description": "A personal navigation portfolio starter built with Astro.",
+  "name": "Ilham Agustiawan",
+  "short_name": "Ilham",
+  "description": "Writing, photos, and drawings by Ilham Agustiawan.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#121113",
+  "theme_color": "#121113",
   "icons": [
     {
       "src": "/android-icon-36x36.png",

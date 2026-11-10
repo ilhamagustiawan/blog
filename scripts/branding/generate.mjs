@@ -1,14 +1,14 @@
 import sharp from 'sharp';
 import { copyFile, writeFile } from 'node:fs/promises';
 
-// Run from the repository root. All icons share the same generated master.
-const master = 'public/images/logo-cat.png';
-const background = '#f8f5ff';
+// Run from the repository root. All icons share one vector master: a "/" mark.
+const master = 'scripts/branding/favicon.svg';
+const background = '#121113';
 const png = { palette: true, quality: 100, effort: 10 };
 
 async function icon(size, opaque = false, maskable = false) {
   const innerSize = maskable ? Math.round(size * 0.82) : size;
-  const image = await sharp(master).resize(innerSize, innerSize).png().toBuffer();
+  const image = await sharp(master, { density: 384 }).resize(innerSize, innerSize).png().toBuffer();
   return sharp({
     create: {
       width: size,
@@ -53,13 +53,8 @@ await sharp(await icon(512, true))
   .webp({ quality: 95 })
   .toFile('public/images/avatar.webp');
 
-await copyFile('public/images/logo-with-name.png', 'public/images/logo-in-one.png');
-
-const svgImage = (await icon(128)).toString('base64');
-await writeFile(
-  'public/favicon.svg',
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><image width="128" height="128" href="data:image/png;base64,${svgImage}"/></svg>\n`,
-);
+// Vector master doubles as the SVG favicon.
+await copyFile(master, 'public/favicon.svg');
 
 // ICO supports PNG payloads; include common browser and desktop sizes.
 const sizes = [16, 32, 48];
@@ -82,4 +77,4 @@ images.forEach((image, i) => {
   offset += image.length;
 });
 await writeFile('public/favicon.ico', Buffer.concat([header, ...images]));
-console.log('Generated avatars, favicons, and app icons from logo-cat.png');
+console.log('Generated avatars, favicons, and app icons from favicon.svg');
