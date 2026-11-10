@@ -16,7 +16,8 @@ const links = home.links.filter((link) => link.tooltip && !link.copy);
 
 <BaseLayout title={site.pageTitle} description={site.pageDescription}>
   <main class="home">
-    <h1>{home.intro.title}</h1>
+    <!-- Name already shows in the header; keep h1 for screen readers -->
+    <h1 class="sr-only">{home.intro.title}</h1>
     {home.intro.body.map((line) => <p>{line}</p>)}
 
     {
@@ -43,12 +44,6 @@ const links = home.links.filter((link) => link.tooltip && !link.copy);
   /* Same 680px text column as the header; main adds side gutters */
   .home {
     width: min(100%, calc(680px + 2 * var(--layout-page-gutter)));
-  }
-
-  h1 {
-    margin: 0 0 16px;
-    font-size: 1.5rem;
-    font-weight: 700;
   }
 
   p {
