@@ -1,18 +1,14 @@
 ---
 import HomeSection from '../components/home/HomeSection.astro';
-import ImageGrid from '../components/home/ImageGrid.astro';
 import PostList from '../components/home/PostList.astro';
-import { galleryRoutes, getGallery, getLatestPosts } from '../data/content';
+import { getLatestPosts } from '../data/content';
 import { getSiteConfig } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const POST_COUNT = 10;
-const IMAGE_COUNT = 5;
 
 const { home, site } = await getSiteConfig();
 const posts = await getLatestPosts(POST_COUNT);
-const photos = await getGallery('photo', IMAGE_COUNT);
-const drawings = await getGallery('drawing', IMAGE_COUNT);
 
 // Only plain links; copy-to-clipboard entries belong to the old dashboard
 const links = home.links.filter((link) => link.tooltip && !link.copy);
@@ -40,22 +36,6 @@ const links = home.links.filter((link) => link.tooltip && !link.copy);
     <HomeSection title="Writing" href="/blog/">
       <PostList posts={posts} />
     </HomeSection>
-
-    {
-      photos.length > 0 && (
-        <HomeSection title="Photos" href={`${galleryRoutes.photo}/`}>
-          <ImageGrid items={photos} />
-        </HomeSection>
-      )
-    }
-
-    {
-      drawings.length > 0 && (
-        <HomeSection title="Drawings" href={`${galleryRoutes.drawing}/`}>
-          <ImageGrid items={drawings} />
-        </HomeSection>
-      )
-    }
   </main>
 </BaseLayout>
 

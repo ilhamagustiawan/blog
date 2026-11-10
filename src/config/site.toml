@@ -131,14 +131,6 @@ label = "blog"
 href = "/blog"
 
 [[config.topNav.links]]
-label = "photos"
-href = "/photos"
-
-[[config.topNav.links]]
-label = "drawings"
-href = "/drawings"
-
-[[config.topNav.links]]
 label = "about"
 href = "/about"
 
