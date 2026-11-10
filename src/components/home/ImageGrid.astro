@@ -1,0 +1,56 @@
+---
+import SmartImage from '../SmartImage.astro';
+import type { GalleryItem } from '../../data/content';
+
+interface Props {
+  items: GalleryItem[];
+  // Min tile width; grid fits as many columns as possible
+  minTile?: number;
+}
+
+const THUMB_WIDTHS = [320, 640];
+
+const { items, minTile = 80 } = Astro.props;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<!-- Square, cropped thumbnails linking to each item -->
+<div class="image-grid" style={`--min-tile: ${minTile}px`}>
+  {
+    items.map((item) => (
+      <a href={`${basePath}/gallery/${item.id}/`} title={item.data.title}>
+        <SmartImage
+          src={item.data.image}
+          alt={item.data.title}
+          widths={THUMB_WIDTHS}
+          sizes={`${THUMB_WIDTHS[0]}px`}
+          loading="lazy"
+        />
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-tile), 1fr));
+    gap: 5px;
+  }
+
+  .image-grid a {
+    display: block;
+    line-height: 0;
+  }
+
+  .image-grid :global(img) {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: opacity 120ms ease;
+  }
+
+  .image-grid a:hover :global(img) {
+    opacity: 0.85;
+  }
+</style>

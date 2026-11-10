@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  href: string;
+}
+
+const { title, href } = Astro.props;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section class="home-section">
+  <h2><a href={`${basePath}${href}`}>{title}</a></h2>
+  <slot />
+</section>
+
+<style>
+  .home-section {
+    margin-top: 40px;
+  }
+
+  h2 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  h2 a {
+    color: var(--paper-ink);
+    text-decoration: none;
+  }
+
+  h2 a:hover {
+    color: var(--paper-accent);
+    text-decoration: underline;
+  }
+</style>

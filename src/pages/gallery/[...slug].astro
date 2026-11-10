@@ -1,0 +1,74 @@
+---
+import FormattedDate from '../../components/FormattedDate.astro';
+import SmartImage from '../../components/SmartImage.astro';
+import { galleryRoutes, getAllGallery, type GalleryItem } from '../../data/content';
+import { getSiteConfig } from '../../data/site';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const FULL_WIDTHS = [880, 1600];
+
+export async function getStaticPaths() {
+  const items = await getAllGallery();
+
+  return items.map((item) => ({ params: { slug: item.id }, props: { item } }));
+}
+
+const { item } = Astro.props as { item: GalleryItem };
+const { site } = await getSiteConfig();
+const { title, date, image, description, kind } = item.data;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const backHref = `${basePath}${galleryRoutes[kind]}/`;
+---
+
+<BaseLayout title={`${title} | ${site.title}`} description={description ?? title}>
+  <main class="gallery-item">
+    <a class="back" href={backHref}>← {kind === 'photo' ? 'Photos' : 'Drawings'}</a>
+    <h1>{title}</h1>
+    <FormattedDate date={date} />
+    <SmartImage
+      src={image}
+      alt={title}
+      widths={FULL_WIDTHS}
+      sizes="(max-width: 880px) 100vw, 880px"
+    />
+    {description && <p>{description}</p>}
+  </main>
+</BaseLayout>
+
+<style>
+  .gallery-item {
+    width: min(100%, 880px);
+  }
+
+  .back {
+    color: var(--paper-ink-soft);
+    text-decoration: none;
+  }
+
+  .back:hover {
+    color: var(--paper-accent);
+  }
+
+  h1 {
+    margin: 16px 0 4px;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .gallery-item :global(time) {
+    display: block;
+    margin-bottom: 20px;
+    color: var(--paper-ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .gallery-item :global(img) {
+    display: block;
+    width: 100%;
+  }
+
+  p {
+    margin-top: 16px;
+    font-family: var(--font-article);
+  }
+</style>

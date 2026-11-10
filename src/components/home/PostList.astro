@@ -1,0 +1,65 @@
+---
+import FormattedDate from '../FormattedDate.astro';
+import type { BlogPost } from '../../data/content';
+
+interface Props {
+  posts: BlogPost[];
+}
+
+const { posts } = Astro.props;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<!-- Title left, date right; collapses to one column on phones -->
+<div class="post-list">
+  {
+    posts.map((post) => (
+      <>
+        <a href={`${basePath}/blog/${post.id}/`}>{post.data.title}</a>
+        <FormattedDate date={post.data.date} />
+      </>
+    ))
+  }
+</div>
+
+<style>
+  .post-list {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    gap: 6px 16px;
+  }
+
+  .post-list a {
+    overflow: hidden;
+    color: var(--paper-ink);
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .post-list a:hover {
+    color: var(--paper-accent);
+    text-decoration: underline;
+  }
+
+  .post-list :global(time) {
+    color: var(--paper-ink-soft);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .post-list {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .post-list a {
+      white-space: normal;
+    }
+
+    .post-list :global(time) {
+      padding-bottom: 12px;
+    }
+  }
+</style>

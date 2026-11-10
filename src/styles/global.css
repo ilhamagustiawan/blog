@@ -1,0 +1,130 @@
+@import './fonts.css';
+@import 'katex/dist/katex.min.css';
+
+/*
+  "ink" palette: light tokens from macwright.com, dark tokens from stevedylan.dev.
+  `html:root` outranks theme-default's `:root[...]` selectors regardless of load order.
+*/
+html:root[data-palette='ink'] {
+  --accent: #b44240;
+  --accent-dark: #8f3331;
+  --paper-accent: #b44240;
+  --paper-accent-soft: #fbeeee;
+  --paper-fog: #f4f4f4;
+  --paper-dust: #f4f4f4;
+  --paper-rule: transparent;
+  --paper-texture-ink: transparent;
+
+  --black: 17, 17, 17;
+  --gray: 85, 85, 85;
+  --gray-light: 238, 238, 238;
+  --gray-dark: 17, 17, 17;
+  --paper-bg: #fff;
+  --paper-bg-deep: #fafafa;
+  --paper-surface: #fff;
+  --paper-surface-muted: #fafafa;
+  --paper-surface-rgb: 255, 255, 255;
+  --paper-line: #eee;
+  --paper-line-strong: #ddd;
+  --paper-ink: #111;
+  --paper-ink-soft: #555;
+  --paper-ink-faint: #777;
+  --paper-control: #fafafa;
+  --paper-control-hover: #f0f0f0;
+  --paper-nav: rgba(255, 255, 255, 0.94);
+  --paper-card-wash-top: transparent;
+  --paper-card-wash-bottom: transparent;
+  --paper-page-bg: #fff;
+  --paper-detail-bg: #fff;
+  --paper-texture-light: transparent;
+  --paper-theme-color: #fff;
+  --paper-shadow: none;
+  --paper-shadow-lift: none;
+  --gray-gradient: transparent, transparent;
+
+  /* Mono for UI (stevedylan.dev), serif for reading (macwright.com) */
+  --font-serif: 'Source Serif 4 Variable', Georgia, serif;
+  --font-article: var(--font-serif);
+}
+
+html:root[data-palette='ink'][data-theme='dark'] {
+  --accent: #e6504f;
+  --accent-dark: #f08483;
+  --paper-accent: #e6504f;
+  --paper-accent-soft: #2a1a1a;
+  --paper-fog: #1c1b1d;
+  --paper-dust: #1c1b1d;
+
+  --black: 255, 255, 255;
+  --gray: 160, 160, 160;
+  --gray-light: 51, 51, 51;
+  --gray-dark: 242, 242, 242;
+  --paper-bg: #121113;
+  --paper-bg-deep: #0d0c0e;
+  --paper-surface: #18171a;
+  --paper-surface-muted: #1e1d20;
+  --paper-surface-rgb: 24, 23, 26;
+  --paper-line: #2a292c;
+  --paper-line-strong: #3a393c;
+  --paper-ink: #f2f2f2;
+  --paper-ink-soft: #a6a6a6;
+  --paper-ink-faint: #808080;
+  --paper-control: #1e1d20;
+  --paper-control-hover: #29282b;
+  --paper-nav: rgba(18, 17, 19, 0.94);
+  --paper-page-bg: #121113;
+  --paper-detail-bg: #121113;
+  --paper-theme-color: #121113;
+}
+
+/* Flat, print-like surfaces: top rule, no shadows or lift */
+html:root[data-palette='ink'] {
+  border-top: 2px solid var(--paper-ink);
+}
+
+[data-palette='ink'] body::before {
+  content: none;
+}
+
+[data-palette='ink'] .glass-card,
+[data-palette='ink'] .glass-card:hover {
+  border-radius: 2px;
+  box-shadow: none;
+  transform: none;
+  animation: none;
+}
+
+[data-palette='ink'] img {
+  border-radius: 0;
+}
+
+/* Underlined links in prose, accent on hover */
+[data-palette='ink'] .article-content a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+[data-palette='ink'] .article-content a:hover {
+  color: var(--paper-accent);
+}
+
+/* Slash-prefixed nav, e.g. /blog /photos (stevedylan.dev) */
+[data-palette='ink'] .blog-top-nav .nav-link::before,
+[data-palette='ink'] .blog-top-nav .mobile-menu-link::before {
+  content: '/';
+}
+
+[data-palette='ink'] .blog-top-nav a.nav-link:hover,
+[data-palette='ink'] .blog-top-nav a.nav-link.active {
+  background: none;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+[data-palette='ink'] h1,
+[data-palette='ink'] h2,
+[data-palette='ink'] h3 {
+  font-weight: 700;
+}

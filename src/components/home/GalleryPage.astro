@@ -1,0 +1,36 @@
+---
+import ImageGrid from './ImageGrid.astro';
+import { getGallery, type GalleryKind } from '../../data/content';
+import { getSiteConfig } from '../../data/site';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+interface Props {
+  kind: GalleryKind;
+  title: string;
+}
+
+const INDEX_TILE = 160;
+
+const { kind, title } = Astro.props;
+const { site } = await getSiteConfig();
+const items = await getGallery(kind);
+---
+
+<BaseLayout title={`${title} | ${site.title}`} description={`${title} by ${site.title}`}>
+  <main class="gallery-page">
+    <h1>{title}</h1>
+    {items.length > 0 ? <ImageGrid items={items} minTile={INDEX_TILE} /> : <p>Nothing yet.</p>}
+  </main>
+</BaseLayout>
+
+<style>
+  .gallery-page {
+    width: min(100%, 880px);
+  }
+
+  h1 {
+    margin: 0 0 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+</style>
