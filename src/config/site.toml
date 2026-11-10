@@ -167,6 +167,12 @@ tooltip = "https://github.com/ilhamagustiawan"
 copy = false
 
 [[config.home.links]]
+label = "Instagram"
+icon = "instagram"
+tooltip = "https://www.instagram.com/_ilhamagustiawan/"
+copy = false
+
+[[config.home.links]]
 label = "RSS"
 icon = "rss"
 tooltip = "/rss.xml"
