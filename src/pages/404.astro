@@ -34,7 +34,7 @@ function withBase(href: string) {
     display: grid;
     min-height: calc(100vh - 56px);
     place-items: center;
-    padding-top: 116px;
+    padding-top: var(--layout-page-top);
     padding-bottom: 72px;
   }
 
@@ -132,7 +132,7 @@ function withBase(href: string) {
   @media (max-width: 720px) {
     .not-found-shell {
       min-height: 100vh;
-      padding-top: 92px;
+      padding-top: 0;
       padding-bottom: 42px;
     }
 

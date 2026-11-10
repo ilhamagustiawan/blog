@@ -114,8 +114,9 @@ html:root[data-palette='ink'] {
 /* Header is static, not fixed, so pages need no top offset for it */
 html:root[data-palette='ink'] {
   --layout-page-top: 0px;
-  /* Shared header + home column, 48rem like stevedylan.dev */
+  /* Shared header + content column, 48rem like stevedylan.dev */
   --layout-column: 768px;
+  --layout-shell-width: calc(var(--layout-column) + 2 * var(--layout-page-gutter));
   /* stevedylan.dev text-sm: 14px / 20px, used by header and home */
   --text-compact: 0.875rem;
   --leading-compact: 1.43;
@@ -131,4 +132,34 @@ html:root[data-palette='ink'] {
 [data-palette='ink'] h2,
 [data-palette='ink'] h3 {
   font-weight: 700;
+}
+
+/* Posts: single column like the rest; TOC lives in the header button */
+[data-palette='ink'] .blog-layout {
+  display: block;
+  width: min(100%, var(--layout-shell-width));
+}
+
+[data-palette='ink'] .blog-layout .right-sidebar {
+  display: none;
+}
+
+[data-palette='ink'] .blog-layout .article-card {
+  --article-content-max: 100%;
+}
+
+[data-palette='ink'] .blog-layout .article-content {
+  max-width: none;
+}
+
+/* Header button already opens the TOC */
+[data-palette='ink'] .blog-layout .mobile-article-toc {
+  display: none;
+}
+
+/* Match the 18px phone gutter used by the header and other pages */
+@media (max-width: 900px) {
+  [data-palette='ink'] .blog-layout {
+    padding: 0 18px 42px;
+  }
 }

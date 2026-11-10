@@ -364,8 +364,7 @@ const shouldShowTocAction = showTocIcon && tocItems.length > 0;
 
   /* Links always visible as a grid, so no hamburger menu */
   .mobile-menu-toggle,
-  .mobile-menu-panel,
-  .mobile-toc-panel {
+  .mobile-menu-panel {
     display: none;
   }
 
@@ -442,8 +441,48 @@ const shouldShowTocAction = showTocIcon && tocItems.length > 0;
     cursor: pointer;
   }
 
+  /* TOC opens from the header on every width; posts have no sidebar */
   .nav-actions .toc-action {
-    display: none;
+    display: inline-grid;
+  }
+
+  .mobile-toc-panel {
+    position: absolute;
+    top: 104px;
+    right: 0;
+    display: grid;
+    width: min(300px, calc(100vw - 20px));
+    max-height: min(52vh, 420px);
+    gap: 8px;
+    overflow: auto;
+    padding: 10px;
+    border: 1px solid var(--paper-line);
+    border-radius: 8px;
+    background: var(--paper-nav);
+    box-shadow: var(--paper-shadow);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition:
+      opacity 160ms ease,
+      transform 160ms ease;
+  }
+
+  .blog-top-nav[data-mobile-toc-open='true'] .mobile-toc-panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .mobile-toc-panel p {
+    margin: 0;
+    padding: 2px 2px 4px;
+    color: var(--paper-ink-faint);
+    font-family: var(--font-ui-label);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
   }
 
   /* Search trigger is styled by SiteSearch; flatten it to match the icons */
@@ -475,59 +514,6 @@ const shouldShowTocAction = showTocIcon && tocItems.length > 0;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-    }
-
-    .nav-actions .toc-action {
-      display: inline-grid;
-    }
-
-    .mobile-toc-panel {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      display: grid;
-      width: min(300px, calc(100vw - 20px));
-      max-height: min(52vh, 420px);
-      gap: 8px;
-      overflow: auto;
-      padding: 10px;
-      border: 1px solid var(--paper-line);
-      border-radius: 8px;
-      background: var(--paper-nav);
-      box-shadow: var(--paper-shadow);
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-4px);
-      transition:
-        opacity 160ms ease,
-        transform 160ms ease;
-    }
-
-    .blog-top-nav[data-mobile-toc-open='true'] .mobile-toc-panel {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-
-    .mobile-toc-panel p {
-      margin: 0;
-      padding: 2px 2px 4px;
-      color: var(--paper-ink-faint);
-      font-family: var(--font-ui-label);
-      font-size: 0.72rem;
-      font-weight: 700;
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
-  }
-
-  @media (min-width: 721px) {
-    .brand-route {
-      display: none;
-    }
-
-    .nav-actions .toc-action {
-      display: none;
     }
   }
 

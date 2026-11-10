@@ -11,11 +11,6 @@ if (!about) {
 const { Content, headings } = await render(about);
 ---
 
-<BlogArticle
-  post={about}
-  headings={headings}
-  sidebar={{ enable: false, ...about.data.sidebar }}
-  contentFont="ui"
->
+<BlogArticle post={about} headings={headings} sidebar={{ enable: false, ...about.data.sidebar }}>
   <Content />
 </BlogArticle>

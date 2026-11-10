@@ -47,7 +47,7 @@ function formatMonthDay(date: Date) {
       main {
         width: min(100%, var(--layout-shell-width));
         max-width: none;
-        padding: 118px var(--layout-page-gutter) var(--layout-page-bottom);
+        padding: var(--layout-page-top) var(--layout-page-gutter) var(--layout-page-bottom);
       }
 
       .year-stack {
@@ -162,10 +162,6 @@ function formatMonthDay(date: Date) {
       }
 
       @media (max-width: 720px) {
-        main {
-          padding-top: 88px;
-        }
-
         .archive-row {
           grid-template-columns: 48px minmax(0, 1fr);
           gap: 10px 14px;
