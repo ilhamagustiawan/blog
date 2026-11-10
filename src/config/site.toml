@@ -1,8 +1,8 @@
 [config.site]
 title = "Ilham Agustiawan"
-description = "Personal writing from Indonesia. Sometimes technical, sometimes other stuff."
+description = "Software engineer and indie hacker wannabe from Indonesia. Personal writing, sometimes technical."
 pageTitle = "Ilham Agustiawan"
-pageDescription = "Personal writing from Indonesia. Sometimes technical, sometimes other stuff."
+pageDescription = "Software engineer and indie hacker wannabe from Indonesia. Personal writing, sometimes technical."
 url = "https://ilhamagustiawan.github.io"
 repository = "https://github.com/ilhamagustiawan/blog"
 footerNote = "Built on astro-navfolio."
@@ -120,7 +120,7 @@ comment = true
 [config.profile]
 name = "Ilham Agustiawan"
 handle = "@ilhamagustiawan"
-role = "Based in Indonesia"
+role = "Software engineer, indie hacker wannabe"
 email = "hello@example.com" # TODO: replace with your public email
 website = "https://ilhamagustiawan.github.io"
 github = "https://github.com/ilhamagustiawan"
@@ -142,7 +142,7 @@ text = ["Personal, sometimes technical, and other stuff."]
 [config.home.intro]
 title = "Ilham Agustiawan"
 name = "Ilham Agustiawan"
-body = ["Hi, I'm Ilham, from Indonesia. I write about personal things, sometimes technical, and other stuff."]
+body = ["Hi, I'm Ilham, a software engineer and indie hacker wannabe from Indonesia. I write about personal things, sometimes technical, and other stuff."]
 
 [config.home.latest]
 count = 1
