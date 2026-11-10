@@ -330,17 +330,19 @@ const shouldShowTocAction = showTocIcon && tocItems.length > 0;
       'brand actions'
       'nav nav';
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 14px 16px;
+    gap: 16px;
     align-items: center;
-    width: min(calc(100% - 32px), 680px);
+    width: min(calc(100% - 32px), var(--layout-column, 768px));
     margin: 0 auto;
-    padding: 56px 0 48px;
+    padding: 64px 0 56px;
+    font-size: var(--text-compact, 0.875rem);
+    line-height: var(--leading-compact, 1.43);
   }
 
   .blog-top-nav::after {
     position: absolute;
     right: 0;
-    bottom: 36px;
+    bottom: 40px;
     left: 0;
     height: 2px;
     background: var(--paper-accent);
@@ -397,12 +399,8 @@ const shouldShowTocAction = showTocIcon && tocItems.length > 0;
   .nav-links {
     grid-area: nav;
     display: grid;
-    grid-template-columns: repeat(4, max-content);
-    gap: 6px 32px;
-  }
-
-  .nav-link {
-    font-size: 0.95rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px 0;
   }
 
   a.nav-link:hover,
@@ -467,11 +465,6 @@ const shouldShowTocAction = showTocIcon && tocItems.length > 0;
   @media (max-width: 720px) {
     .blog-top-nav {
       width: calc(100% - 36px);
-      padding: 32px 0 32px;
-    }
-
-    .blog-top-nav::after {
-      bottom: 20px;
     }
 
     .brand {
@@ -482,11 +475,6 @@ const shouldShowTocAction = showTocIcon && tocItems.length > 0;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-    }
-
-    .nav-links {
-      grid-template-columns: repeat(3, max-content);
-      gap: 4px 24px;
     }
 
     .nav-actions .toc-action {

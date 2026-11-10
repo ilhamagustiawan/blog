@@ -7,7 +7,7 @@ import { getSiteConfig } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const POST_COUNT = 10;
-const LINK_ICON_SIZE = 20;
+const LINK_ICON_SIZE = 24;
 
 const { home, site } = await getSiteConfig();
 const posts = await getLatestPosts(POST_COUNT);
@@ -41,25 +41,29 @@ const links = home.links.filter((link) => link.tooltip && !link.copy);
 </BaseLayout>
 
 <style>
-  /* Same 680px text column as the header; main adds side gutters */
+  /* Same column as the header; main adds side gutters */
   .home {
-    width: min(100%, calc(680px + 2 * var(--layout-page-gutter)));
+    width: min(100%, calc(var(--layout-column, 768px) + 2 * var(--layout-page-gutter)));
+    font-size: var(--text-compact, 0.875rem);
+    line-height: var(--leading-compact, 1.43);
   }
 
   p {
-    margin: 0 0 8px;
+    margin: 0 0 16px;
     color: var(--paper-ink-soft);
   }
 
   /* Icon row: GitHub, Instagram, RSS */
+  /* -8px offsets the icon padding so icons align with the text edge */
   .find-me {
     display: flex;
     gap: 16px;
-    margin-top: 12px;
+    margin-left: -8px;
   }
 
   .find-me a {
     display: inline-flex;
+    padding: 8px;
     color: var(--paper-ink-soft);
   }
 

@@ -113,6 +113,11 @@ html:root[data-palette='ink'] {
 /* Header is static, not fixed, so pages need no top offset for it */
 html:root[data-palette='ink'] {
   --layout-page-top: 0px;
+  /* Shared header + home column, 48rem like stevedylan.dev */
+  --layout-column: 768px;
+  /* stevedylan.dev text-sm: 14px / 20px, used by header and home */
+  --text-compact: 0.875rem;
+  --leading-compact: 1.43;
 }
 
 @media (max-width: 720px) {
