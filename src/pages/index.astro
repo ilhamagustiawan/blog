@@ -40,8 +40,9 @@ const links = home.links.filter((link) => link.tooltip && !link.copy);
 </BaseLayout>
 
 <style>
+  /* Same 680px text column as the header; main adds side gutters */
   .home {
-    width: min(100%, 680px);
+    width: min(100%, calc(680px + 2 * var(--layout-page-gutter)));
   }
 
   h1 {

@@ -110,17 +110,15 @@ html:root[data-palette='ink'] {
   color: var(--paper-accent);
 }
 
-/* Slash-prefixed nav, e.g. /blog /photos (stevedylan.dev) */
-[data-palette='ink'] .blog-top-nav .nav-link::before,
-[data-palette='ink'] .blog-top-nav .mobile-menu-link::before {
-  content: '/';
+/* Header is static, not fixed, so pages need no top offset for it */
+html:root[data-palette='ink'] {
+  --layout-page-top: 0px;
 }
 
-[data-palette='ink'] .blog-top-nav a.nav-link:hover,
-[data-palette='ink'] .blog-top-nav a.nav-link.active {
-  background: none;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+@media (max-width: 720px) {
+  html:root[data-palette='ink'] main {
+    padding-top: 0;
+  }
 }
 
 [data-palette='ink'] h1,
