@@ -2,14 +2,15 @@
 @import 'katex/dist/katex.min.css';
 
 /*
-  "ink" palette: light tokens from macwright.com, dark tokens from stevedylan.dev.
+  "ink" palette: monochrome. Light tokens from macwright.com, dark from stevedylan.dev;
+  accent equals text color, so emphasis comes from weight and underline, not hue.
   `html:root` outranks theme-default's `:root[...]` selectors regardless of load order.
 */
 html:root[data-palette='ink'] {
-  --accent: #b44240;
-  --accent-dark: #8f3331;
-  --paper-accent: #b44240;
-  --paper-accent-soft: #fbeeee;
+  --accent: #111;
+  --accent-dark: #000;
+  --paper-accent: #111;
+  --paper-accent-soft: #f2f2f2;
   --paper-fog: #f4f4f4;
   --paper-dust: #f4f4f4;
   --paper-rule: transparent;
@@ -48,10 +49,10 @@ html:root[data-palette='ink'] {
 }
 
 html:root[data-palette='ink'][data-theme='dark'] {
-  --accent: #e6504f;
-  --accent-dark: #f08483;
-  --paper-accent: #e6504f;
-  --paper-accent-soft: #2a1a1a;
+  --accent: #fff;
+  --accent-dark: #fff;
+  --paper-accent: #fff;
+  --paper-accent-soft: #232225;
   --paper-fog: #1c1b1d;
   --paper-dust: #1c1b1d;
 

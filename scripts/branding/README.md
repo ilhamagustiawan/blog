@@ -1,6 +1,6 @@
 # Site icons
 
-`favicon.svg` here is the master: a "/" mark with a red dot, in the site's
+`favicon.svg` here is the master: a "/" mark with a dot, in the site's
 dark palette. Every favicon, app icon, and `public/images/avatar.webp` is
 exported from it.
 
