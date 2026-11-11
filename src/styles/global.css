@@ -78,11 +78,7 @@ html:root[data-palette='ink'][data-theme='dark'] {
   --paper-theme-color: #121113;
 }
 
-/* Flat, print-like surfaces: top rule, no shadows or lift */
-html:root[data-palette='ink'] {
-  border-top: 2px solid var(--paper-ink);
-}
-
+/* Flat, print-like surfaces: no shadows or lift */
 [data-palette='ink'] body::before {
   content: none;
 }
