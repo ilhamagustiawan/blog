@@ -159,3 +159,14 @@ html:root[data-palette='ink'] {
     padding: 0 18px 42px;
   }
 }
+
+/* Sticky footer: main absorbs spare height, so on short pages the footer sits at the viewport bottom */
+[data-palette='ink'] body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+[data-palette='ink'] body > main {
+  flex: 1 0 auto;
+}
